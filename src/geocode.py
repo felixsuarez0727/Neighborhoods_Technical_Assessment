@@ -1,10 +1,13 @@
 from dotenv import load_dotenv
+
 import googlemaps
 import logger
 import os
 
+
 load_dotenv()
 API_KEY = os.environ.get("API_KEY")
+
 
 try:
     logger.info_log( 'Loading Google Maps Client' )
@@ -16,10 +19,15 @@ except Exception as e:
 
 
 def get_geocode(full_address):
-    """ Returns the Geocoded Address """
+    """ Returns the Geocoded Address using the Google Maps Client """
     
     try:
         return G_MAPS.geocode(full_address)
     except Exception as e:
         logger.error_log( f'Error Extracting the Address: {e}' )
         exit()
+
+
+def get_coordinates(geocode):
+    """ Obtain the coordinates from the provided Geocode """
+    return geocode[0].get("geometry").get("location")
