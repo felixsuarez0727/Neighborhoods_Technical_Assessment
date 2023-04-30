@@ -31,3 +31,4 @@ def get_geocode(full_address):
 def get_coordinates(geocode):
     """ Obtain the coordinates from the provided Geocode """
     return geocode[0].get("geometry").get("location")
+
